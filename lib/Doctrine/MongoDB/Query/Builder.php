@@ -75,7 +75,7 @@ class Builder
             'reduce' => null,
             'options' => array()
         ),
-        'near' => array(),
+        //'near' => array(),
         'new' => false,
         'upsert' => false,
     );
@@ -562,6 +562,47 @@ class Builder
         return $this;
     }
 
+    /**
+     * Add where $within $centerSphere query.
+     *
+     * @param string $x
+     * @param string $y
+     * @param string $radius
+     * @return Builder
+     */
+    public function withinCenterSphere($x, $y, $radius)
+    {
+        $this->expr->withinCenterSphere($x, $y, $radius);
+        return $this;
+    }
+
+    /**
+     * Add where $near $maxDistance query.
+     *
+     * @param string $x
+     * @param string $y
+     * @param string $maxDistance
+     * @return Builder
+     */
+    public function near($x, $y, $maxDistance = null)
+    {
+      $this->expr->near($x, $y, $maxDistance);
+      return $this;
+    }
+
+    /**
+     * Add where $nearSphere $maxDistance query.
+     *
+     * @param string $x
+     * @param string $y
+     * @param string $maxDistance
+     * @return Builder
+     */
+    public function nearSphere($x, $y, $maxDistance = null)
+    {
+      $this->expr->nearSphere($x, $y, $maxDistance);
+      return $this;
+    }
 
     /**
      * Set sort and erase all old sorts.

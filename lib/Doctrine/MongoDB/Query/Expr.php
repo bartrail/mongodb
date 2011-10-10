@@ -227,6 +227,44 @@ class Expr
         return $this;
     }
 
+    public function withinCenterSphere($x, $y, $radius)
+    {
+        if ($this->currentField) {
+            $this->query[$this->currentField][$this->cmd . 'within'][$this->cmd . 'centerSphere'] = array(array($x, $y), $radius);
+        } else {
+            $this->query[$this->cmd . 'within'][$this->cmd . 'centerSphere'] = array(array($x, $y), $radius);
+        }
+        return $this;
+    }
+
+    public function near($x, $y, $maxDistance = null)
+    {
+        if ($this->currentField) {
+            $this->query[$this->currentField][$this->cmd . 'near'] = array($x, $y);
+            if($maxDistance != null) {
+              $this->query[$this->currentField][$this->cmd . 'maxDistance'] = $maxDistance;
+            }
+        } else {
+            $this->query[$this->cmd . 'near'] = array($x, $y);
+            $this->query[$this->cmd . 'maxDistance'] = $maxDistance;
+        }
+        return $this;
+    }
+
+    public function nearSphere($x, $y, $maxDistance = null)
+    {
+        if ($this->currentField) {
+            $this->query[$this->currentField][$this->cmd . 'nearSphere'] = array($x, $y);
+            if($maxDistance != null) {
+              $this->query[$this->currentField][$this->cmd . 'maxDistance'] = $maxDistance;
+            }
+        } else {
+            $this->query[$this->cmd . 'nearSphere'] = array($x, $y);
+            $this->query[$this->cmd . 'maxDistance'] = $maxDistance;
+        }
+        return $this;
+    }
+
     public function set($value, $atomic = true)
     {
         $this->requiresCurrentField();
