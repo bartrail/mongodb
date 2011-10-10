@@ -75,7 +75,7 @@ class Builder
             'reduce' => null,
             'options' => array()
         ),
-        //'near' => array(),
+//        'near' => array(),
         'new' => false,
         'upsert' => false,
     );
@@ -327,19 +327,19 @@ class Builder
         return $this;
     }
 
-    /**
-     * Add where near criteria.
-     *
-     * @param string $x
-     * @param string $y
-     * @return Builder
-     */
-    public function near($value)
-    {
-        $this->query['type'] = Query::TYPE_GEO_LOCATION;
-        $this->query['near'][$this->currentField] = $value;
-        return $this;
-    }
+//    /**
+//     * Add where near criteria.
+//     *
+//     * @param string $x
+//     * @param string $y
+//     * @return Builder
+//     */
+//    public function near($value)
+//    {
+//        $this->query['type'] = Query::TYPE_GEO_LOCATION;
+//        $this->query['near'][$this->currentField] = $value;
+//        return $this;
+//    }
 
     /**
      * Set the current field to operate on.
